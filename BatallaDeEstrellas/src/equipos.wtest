@@ -1,0 +1,52 @@
+import equipos.*
+import personajes.*
+
+describe "equipo1 ataca equipo2"{
+	
+	fixture {
+		equipo1.atacar(equipo2)
+	}
+	
+	test "test pamela gana vida por luchar con el equipo2 "{
+		assert.that(pamela.energiaAntesDePelear() < pamela.getEnergia())
+	}
+	
+	test "test los integrantes del equipo 2 tienen la mitad de vida despues de luchar con tulipan"{
+		assert.equals(equipo2.getIntegrantes().map({integrante => integrante.energiaAntesDePelear().div(2)}),equipo2.getIntegrantes().map({integrante => integrante.getEnergia()}))
+	}
+	
+}
+
+describe "equipo2 ataca equipo1"{
+	fixture {
+		equipo2.atacar(equipo1)
+	}
+	
+	test "test pocardo gana vida por luchar con el equipo1"{
+		assert.that(pocardo.energiaAntesDePelear() < pocardo.getEnergia())
+	}
+	
+	test "test toro tiene el ultimo elemento del primer integrante del equipo1"{
+		assert.that(toro.getColeccion().contains(equipo1.ultimosItems().first()))
+	}
+	
+	test "test toro tiene el ultimo elemento del segundo integrante del equipo1"{
+		assert.that(toro.getColeccion().contains(equipo1.ultimosItems().last()))
+	}
+}
+
+describe "batallan ambos equipos" {
+	
+	fixture {
+		equipo1.atacar(equipo2)
+		equipo2.atacar(equipo1)
+	}
+	
+	test "test gana equipo1"{
+		assert.that(equipo1.getEnergia() > equipo2.getEnergia())
+	}
+	
+	test "test pierde equipo2"{
+		assert.notThat(equipo1.getEnergia() < equipo2.getEnergia())
+	}
+}

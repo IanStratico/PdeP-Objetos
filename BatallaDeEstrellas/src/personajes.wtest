@@ -1,0 +1,77 @@
+import personajes.*
+
+describe "pamela lucha mano a mano"{
+	
+	test "test pamela tiene mas de vida despues de luchar mano a mano con pocardo"{
+		pamela.lucharManoAMano(pocardo)
+		assert.that(pamela.energiaAntesDePelear() < pamela.getEnergia() )
+	}
+	
+	test "test pamela tiene mas de vida despues de luchar mano a mano con tulipan"{
+		pamela.lucharManoAMano(tulipan)
+		assert.that(pamela.energiaAntesDePelear() < pamela.getEnergia() )
+	}
+	
+	test "test pamela tiene mas de vida despues de luchar mano a mano con toro"{
+		pamela.lucharManoAMano(toro)
+		assert.that(pamela.energiaAntesDePelear() < pamela.getEnergia() )
+	}
+	
+	
+}
+
+describe "pocardo lucha mano a mano"{
+	
+	test "test pocardo tiene mas de vida despues de luchar mano a mano con pamela"{
+		pocardo.lucharManoAMano(pamela)
+		assert.that(pocardo.energiaAntesDePelear() < pocardo.getEnergia() )
+	}
+	
+	test "test pocardo tiene mas de vida despues de luchar mano a mano con tulipan"{
+		pocardo.lucharManoAMano(tulipan)
+		assert.that(pocardo.energiaAntesDePelear() < pocardo.getEnergia() )
+	}
+	
+	test "test pocardo tiene mas de vida despues de luchar mano a mano con toro"{
+		pocardo.lucharManoAMano(toro)
+		assert.that(pocardo.energiaAntesDePelear() < pocardo.getEnergia() )
+	}
+}
+
+describe "tulipan lucha mano a mano"{
+	
+	test "test pamela tiene la mitad de la vida despues de pelear con tulipan"{
+		tulipan.lucharManoAMano(pamela)
+		assert.equals(pamela.energiaAntesDePelear()/2,pamela.getEnergia())
+	}
+	
+	test "test pocardo tiene la mitad de la vida despues de pelear con tulipan"{
+		tulipan.lucharManoAMano(pocardo)
+		assert.equals(pocardo.energiaAntesDePelear()/2,pocardo.getEnergia())
+	}
+	
+	test "test toro tiene la mitad de la vida despues de pelear con tulipan"{
+		tulipan.lucharManoAMano(toro)
+		assert.equals(toro.energiaAntesDePelear()/2,toro.getEnergia())
+	}
+	
+	
+}
+
+describe "toro lucha mano a mano" {
+	
+	test "test toro tiene el ultimo elemento de la coleccion de pamela despues de pelear"{
+		toro.lucharManoAMano(pamela)
+		assert.that(toro.getColeccion().contains(pamela.getColeccion().last()))
+	}
+	
+	test "test toro tiene el ultimo elemento de la coleccion de pocardo despues de pelear"{
+		toro.lucharManoAMano(pocardo)
+		assert.that(toro.getColeccion().contains(pocardo.getColeccion().last()))
+	}
+	
+	test "test toro tiene el ultimo elemento de la coleccion de tulipan despues de pelear"{
+		toro.lucharManoAMano(tulipan)
+		assert.that(toro.getColeccion().contains(tulipan.getColeccion().last()))
+	}
+}
